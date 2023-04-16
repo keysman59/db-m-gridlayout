@@ -104,29 +104,29 @@
                 class="elevation-0 border-0 tab-v-data-table app-background--secondary no-border-tr"
                 fixed-header
         >
-            <template v-slot:header.bytesTotal="props">
-					      <span v-if="props.header.unit">
+          <template v-slot:header.bytesTotal="props">
+              <span v-if="props.header.unit">
+                {{`${props.header.text}, ${props.header.unit}`}}
+              </span>
+            <span v-if="!props.header.unit">
+                {{`${props.header.text}`}}
+              </span>
+          </template>
+
+          <template v-slot:header.bytesIn="props">
+              <span>
+                {{`${props.header.text}, ${props.header.unit}`}}
+              </span>
+          </template>
+
+          <template v-slot:header.bytesOut="props">
+                <span>
                   {{`${props.header.text}, ${props.header.unit}`}}
                 </span>
-              <span v-if="!props.header.unit">
-                  {{`${props.header.text}`}}
-                </span>
-            </template>
-
-            <template v-slot:header.bytesIn="props">
-					      <span>
-                  {{`${props.header.text}, ${props.header.unit}`}}
-                </span>
-            </template>
-
-            <template v-slot:header.bytesOut="props">
-                  <span>
-                    {{`${props.header.text}, ${props.header.unit}`}}
-                  </span>
-            </template>
+          </template>
 
 
-            <template v-slot:header.asn="props">
+          <template v-slot:header.asn="props">
         <span
                 class="mx-5 header-item"
         >{{props.header.text}}</span>

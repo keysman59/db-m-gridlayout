@@ -3,6 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import IonIcon from '@/components/ionIcon/IonIcon'
+
+import JsonExcel from 'vue-json-excel'
+Vue.component('downloadExcel', JsonExcel);
+
+Vue.component('ion-icon', IonIcon)
+Vue.config.ignoredElements = [/^ion-/];
 
 Vue.config.productionTip = false
 

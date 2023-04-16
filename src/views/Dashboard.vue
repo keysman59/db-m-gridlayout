@@ -1,7 +1,7 @@
 <template>
   <v-app class="dashboard-gradient app-background--primary">
     <div data-app>
-      Дашбоард
+      Дашбоард dashboard компонент
     </div>
   </v-app>
 </template>

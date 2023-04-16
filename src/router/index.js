@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '@/views/Dashboard.vue'
 import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter)
@@ -9,13 +8,13 @@ const routes = [
   {
     path: '/',
     name: 'home-view',
-    component: Dashboard
+    component: () => import('@/views/Dashboard/Dashboard.vue')
   },
   // Дашбоард
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: () => import('@/views/Dashboard/Dashboard.vue')
   },
   // в реальном времени
   {

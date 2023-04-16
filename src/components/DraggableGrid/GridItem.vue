@@ -1,16 +1,32 @@
 <template>
-    <div>
-      Это компонент GridItem
-    </div>
-  </template>
+	<div
+		:class="classObj"
+		:style="style"
+		class="vue-grid-item app-background--secondary"
+		ref="item"
+	>
+		<slot></slot>
+		<span
+			:class="resizableHandleClass"
+			ref="handle"
+			v-if="resizableAndNotStatic"
+			style="
+				z-index: 20;
+			"
+		>
+			<v-icon
+				color="grey"
+			>mdi-chevron-right mdi-rotate-45</v-icon>
+		</span>
+  </div>
+</template>
   
-  <script>
-    export default {
-      name: 'griditem',
-  
-      data: () => ({
-  
-      }),
-    }
-  </script>
-  
+<script>
+  export default {
+    name: 'griditem',
+
+    data: () => ({
+
+    }),
+  }
+</script>

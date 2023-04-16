@@ -40,6 +40,74 @@
           style="overflow: hidden"
           v-for="(item, index) of diagrams"
         >
+        <div :key="item.updateKey" style="height: 100%">
+            <div
+              v-if="
+                !$store.state.periodsInt.find((el) => {
+                  return item.periodId == el.id;
+                })
+              "
+              class="text-center align-center"
+              v-bind:style="{ marginTop: (item.h / 2) * 40 + 'px' }"
+            >
+              <div
+                class="actions"
+                style="position: absolute; top: 3px; right: 3px"
+                v-show="isEdit"
+              >
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn @click="editDiagram(item.diagramId)" icon v-on="on">
+                      <ion-icon name="settings-outline"></ion-icon>
+                    </v-btn>
+                  </template>
+                  <span>Редактировать</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn @click="showDeleteWarning(item.id)" icon v-on="on">
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </v-btn>
+                  </template>
+                  <span>Удалить</span>
+                </v-tooltip>
+              </div>
+              <v-progress-circular
+                :size="70"
+                :width="7"
+                color="#4d85fd"
+                indeterminate
+              ></v-progress-circular>
+            </div>
+
+            <DashTable
+              :isEdit="isEdit"
+              :itemsPerPage="item.data ? item.data.length : 5"
+              :tableHeaders="item.headers"
+              :tableItems="item.data"
+              :key="item.updateKey"
+              :selectDash="selectDash"
+              :resourceId="item.resourceId"
+              :typeId="item.typeId"
+              :tableTitle="{
+                show: true,
+                text: item.name,
+                subtitle: getItemPeriodText(item),
+              }"
+              @saveFraudDiagram="saveFraudDiagram(item)"
+              @onChangeSelect="onChangeSelect($event)"
+              @delete-diagram="showDeleteWarning(item.id)"
+              @edit-diagram="editDiagram(item.diagramId)"
+              @copy-diagram="openDiagramCopyDialog(item.diagramId)"
+              v-if="
+                item.graphType === 'grid' &&
+                $store.state.periodsInt.find((el) => {
+                  return item.periodId == el.id;
+                })
+              "
+            />
+          </div>
         </grid-item>
       </grid-layout>
     </div>
@@ -63,6 +131,7 @@ import localDiagrams from '@/localData/diagrams.js'
         preventCollision: false,
         responsive: true,
         rowHeight: 45,
+        isEdit: false,
       }
     },
     components: {

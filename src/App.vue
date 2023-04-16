@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <Aside>
+    <Aside v-if="$route.path !== '/login'">
 
     </Aside>
-    <Header>
+    <Header v-if="$route.path !== '/login'">
 
     </Header>
 		<v-main>

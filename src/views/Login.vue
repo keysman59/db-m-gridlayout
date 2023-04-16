@@ -4,7 +4,7 @@
       <v-col cols="12" md="4" sm="8">
         <form label-position="top">
           <v-card width="600" outlined>
-            <v-toolbar color="primary" flat>
+            <v-toolbar flat>
               <v-toolbar-title
                 color="primary_text"
                 style="font-size: 28px; font-weight: bold"
@@ -52,7 +52,7 @@
             <v-card-actions class="login__actions">
               <v-btn
                 @click="submit"
-                color="btn_primary"
+                color="primary"
                 class="white--text"
                 :loading="form.loading"
                 depressed
@@ -79,7 +79,16 @@ export default {
         provider: "Local",
         loading: false,
       },
-      providerOptions: [],
+      providerOptions: [
+        {
+          value:"Local",
+          text:"Встроенная учетная запись"
+        },
+        {
+          value:"Ldap",
+          text:"Доменная учетная запись"
+        },
+      ],
       warnModal: {
         isVisible: false,
         title: "",
@@ -98,10 +107,6 @@ export default {
   computed: {
 
   },
-
-  async mounted() {
-    await this.getProviders();
-  },
   methods: {
 
     showWarn(title, message) {
@@ -115,22 +120,34 @@ export default {
       this.warnModal.title = "";
       this.warnModal.msg = "";
     },
-    async getProviders() {
-      this.providerOptions = [
-        {
-          value:"Local",
-          text:"Встроенная учетная запись"
-        },
-        {
-          value:"Ldap",
-          text:"Доменная учетная запись"
-        },
-      ]
-    },
 
     submit() {
-      console.log('нажали на кнопку')
+      console.log(this.form)
+      if (this.form.login === 'admin' && this.form.password === 'admin') {
+        console.log('авторизация прошла успешно')
+        this.handleSubmitSuccess()
+      } else {
+        this.handleSubmitError()
+      }
     },
+
+    handleSubmitSuccess() {
+      console.log('успешный запрос')
+      localStorage.setItem("clientId", 1);
+      localStorage.removeItem("selectedPeriod");
+      localStorage.removeItem("selectedPeriodStart");
+      localStorage.removeItem("selectedPeriodEnd");
+      this.$store.state.selectedPeriod = "Текущий день";
+      this.$store.state.selectedPeriodStart = "";
+      this.$store.state.selectedPeriodEnd = "secondDate";
+      // this.$eventManager.$emit("initApp");
+      // this.login(data);
+
+      this.$router.push({ path: "/" });
+    },
+    handleSubmitError() {
+      console.log('ошибка')
+    }
   },
 };
 </script>

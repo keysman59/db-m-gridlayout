@@ -133,13 +133,13 @@ export default {
 
     handleSubmitSuccess() {
       console.log('успешный запрос')
-      localStorage.setItem("clientId", 1);
-      localStorage.removeItem("selectedPeriod");
-      localStorage.removeItem("selectedPeriodStart");
-      localStorage.removeItem("selectedPeriodEnd");
-      this.$store.state.selectedPeriod = "Текущий день";
-      this.$store.state.selectedPeriodStart = "";
-      this.$store.state.selectedPeriodEnd = "secondDate";
+      // localStorage.setItem("clientId", 1);
+      // localStorage.removeItem("selectedPeriod");
+      // localStorage.removeItem("selectedPeriodStart");
+      // localStorage.removeItem("selectedPeriodEnd");
+      // this.$store.state.selectedPeriod = "Текущий день";
+      // this.$store.state.selectedPeriodStart = "";
+      // this.$store.state.selectedPeriodEnd = "secondDate";
       // this.$eventManager.$emit("initApp");
       // this.login(data);
 

@@ -18,10 +18,18 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <v-list-item @click="signOut" class="menu-list__item">
+        <v-list-item-title>
+          Выход из системы
+        </v-list-item-title>
+      </v-list-item>
+
   </v-navigation-drawer>
 </template>
 
 <script>
+
   export default {
     name: 'Aside',
 
@@ -53,5 +61,11 @@
         }
       ]
     }),
+    methods: {
+      signOut() {
+        console.log('анлогин')
+        this.$router.push('/login')
+      }
+    }
   }
 </script>

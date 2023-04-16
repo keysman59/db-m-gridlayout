@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+  <div>
+    Это Dashboard компонент
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+
 
   export default {
     name: 'Home-view',
 
     components: {
-      HelloWorld,
+
     },
   }
 </script>

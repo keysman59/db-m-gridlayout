@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    periodInt: [{
+    periodsInt: [{
         period: "day",
         id: 1,
         name: "День"

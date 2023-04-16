@@ -118,6 +118,7 @@
 import GridLayout from "@/components/DraggableGrid/GridLayout.vue"
 import GridItem from "@/components/DraggableGrid/GridItem.vue"
 import localDiagrams from '@/localData/diagrams.js'
+import DashTable from '@/components/tables/DashTable.vue'
 
   export default {
     name: 'Home-view',
@@ -132,11 +133,29 @@ import localDiagrams from '@/localData/diagrams.js'
         responsive: true,
         rowHeight: 45,
         isEdit: false,
+        selectDash: 'Все'
       }
     },
     components: {
       GridLayout,
-      GridItem
+      GridItem,
+      DashTable
     },
+    methods: {
+      getItemPeriodText(item) {
+      if (item.dateFrom) {
+        return `С ${this.$moment(item.dateFrom, "DD.MM.YYYY HH:mm:ss").format(
+          "DD.MM.YYYY HH:mm"
+        )} по ${this.$moment(item.dateTo, "DD.MM.YYYY HH:mm:ss").format(
+          "DD.MM.YYYY HH:mm"
+        )}`;
+      } else {
+        return this.$store.state.periodsInt.find((el) => {
+          return item.periodId == el.id;
+        }).name;
+      }
+    },
+    }
+
   }
 </script>

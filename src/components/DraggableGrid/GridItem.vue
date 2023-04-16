@@ -1,7 +1,5 @@
 <template>
 	<div
-		:class="classObj"
-		:style="style"
 		class="vue-grid-item app-background--secondary"
 		ref="item"
 	>
@@ -28,5 +26,24 @@
     data: () => ({
 
     }),
+    computed: {
+			classObj() {
+				return {
+					'vue-resizable': this.resizableAndNotStatic,
+					'static': this.static,
+					'resizing': this.isResizing,
+					'vue-draggable-dragging': this.isDragging,
+					'cssTransforms': this.useCssTransforms,
+					'render-rtl': this.renderRtl,
+					'disable-userselect': this.isDragging,
+
+					//избавление от варни при передвижении
+					'no-touch': true // this.isAndroid && this.draggableOrResizableAndNotStatic
+				}
+			},
+      resizableAndNotStatic() {
+				return this.resizable && !this.static;
+			},
+    }
   }
 </script>

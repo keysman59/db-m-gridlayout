@@ -1,7 +1,9 @@
 <template>
-  <div>
-    Это Dashboard компонент
-  </div>
+  <v-app class="dashboard-gradient app-background--primary">
+    <div data-app>
+      Дашбоард
+    </div>
+  </v-app>
 </template>
 
 <script>

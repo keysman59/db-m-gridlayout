@@ -24,6 +24,9 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+
+  },
   components: {
 			Header,
 			Aside,
